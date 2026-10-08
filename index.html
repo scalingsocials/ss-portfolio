@@ -924,10 +924,13 @@ addEventListener('resize',setMode);
   const m=h.match(/^#for-([A-Za-z0-9._~-]+)$/);
   if(m){ $('#prepName').textContent=m[1].replace(/[-_.~]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()); $('#prepared').hidden=false; }
   const s=h.match(/^#s(\d+)$/); if(s) cur=Math.min(N-1,Math.max(0,+s[1]-1));
-  // shared by a sales rep: ?by=Name&wa=91XXXXXXXXXX
-  const q=new URLSearchParams(location.search), by=(q.get('by')||'').trim().slice(0,40), wa=(q.get('wa')||'').replace(/\D/g,'');
-  if(by&&wa.length>=10){
-    const brand=m?$('#prepName').textContent:'';
+  // shared by a sales rep: ?rep=code. Only approved reps below; numbers never come from the URL.
+  const REPS={
+    // code: ['Full name','91XXXXXXXXXX'],
+  };
+  const code=(new URLSearchParams(location.search).get('rep')||'').toLowerCase().trim(), r=REPS[code];
+  if(r){
+    const by=r[0], wa=r[1], brand=m?$('#prepName').textContent:'';
     const msg=`Hi ${by.split(' ')[0]}, I went through the Scaling Socials portfolio and would like a free account review${brand?' for '+brand:''}.`;
     $('#repName').textContent=by; $('#repFirst').textContent=by.split(' ')[0];
     $('#repWa').href='https://wa.me/'+wa+'?text='+encodeURIComponent(msg); $('#repCall').href='tel:+'+wa;
