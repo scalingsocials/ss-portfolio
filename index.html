@@ -74,14 +74,14 @@ p{margin:0}
 .cover .meta b{font-size:17px}
 .cover .meta span{font-size:14px;color:var(--mute)}
 .prepared{display:inline-flex;align-items:center;gap:10px;margin-top:28px;background:var(--lilac);color:var(--peri-deep);padding:10px 16px;border-radius:999px;font-weight:600;font-size:17px;align-self:flex-start}
-.mosaic{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);gap:14px;padding:28px 28px 28px 0;height:100%}
-.mosaic div{border-radius:16px;overflow:hidden;position:relative}
+.mosaic{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:28px 28px 28px 0;align-content:center}
+.mosaic div{border-radius:16px;overflow:hidden;position:relative;aspect-ratio:1}
 .mosaic div:nth-child(1){background:var(--butter)}.mosaic div:nth-child(2){background:var(--blush)}.mosaic div:nth-child(3){background:var(--mint)}
 .mosaic div:nth-child(4){background:var(--lilac)}.mosaic div:nth-child(5){background:var(--sand)}.mosaic div:nth-child(6){background:var(--blush)}
 .mosaic div:nth-child(7){background:var(--mint)}.mosaic div:nth-child(8){background:var(--butter)}.mosaic div:nth-child(9){background:var(--lilac)}
-.mosaic img{width:100%;height:100%;object-fit:cover;transition:opacity .8s}
+.mosaic img{width:100%;height:100%;object-fit:contain}
 .mosaic .stat{display:grid;place-content:center;text-align:center;padding:12px}
-.mosaic .stat b{font-size:58px;letter-spacing:-.03em;color:var(--peri-deep);line-height:1}
+.mosaic .stat b{font-size:50px;white-space:nowrap;letter-spacing:-.03em;color:var(--peri-deep);line-height:1}
 .mosaic .stat span{font-size:15px;color:var(--ink);margin-top:6px}
 
 /* ---------- 02 numbers ---------- */
@@ -201,10 +201,10 @@ p{margin:0}
 .shots figcaption{font-size:14px;color:var(--mute);padding:10px 4px 2px}
 
 /* ---------- lookbook ---------- */
-.look{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-auto-rows:206px;gap:12px}
-.look button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden;position:relative;background:var(--surface)}
+.look{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;align-content:start}
+.look button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden;position:relative;background:var(--surface);aspect-ratio:1}
 .look button:focus-visible{outline:3px solid var(--peri);outline-offset:2px}
-.look img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.look img{width:100%;height:100%;object-fit:contain;transition:transform .5s}
 .look button:hover img{transform:scale(1.05)}
 .look .tall{grid-row:span 2}
 
@@ -312,7 +312,6 @@ p{margin:0}
   .cover .sub{font-size:17px}
   .cover .meta{flex-wrap:wrap;gap:14px 22px}
   .mosaic{padding:24px 0 0;height:auto;grid-template-rows:none}
-  .mosaic div{aspect-ratio:1}
   .mosaic .stat b{font-size:30px}.mosaic .stat span{font-size:12px}
   .nums{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .nums .n{padding:18px;min-height:150px}.nums .n b{font-size:46px}.nums .n p{font-size:15px}
@@ -334,7 +333,7 @@ p{margin:0}
   .intl{grid-template-columns:1fr 1fr;gap:10px}.intl .h{grid-column:1/-1}.intl .c b{font-size:22px}
   .shots{grid-template-columns:1fr}
   .look{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:8px}
-  .look button{aspect-ratio:4/5}.look .tall{grid-row:auto}
+  .look button{aspect-ratio:1}
   .reels{grid-template-columns:repeat(6,62%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
   .reels .phone{scroll-snap-align:start}.reels .phone:nth-child(even){transform:none}
   .sites{grid-template-columns:1fr;gap:26px}
