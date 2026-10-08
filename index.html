@@ -358,6 +358,11 @@ img{-webkit-user-drag:none;user-select:none}
 .steps div{background:#1f1f26;border:1px solid #2c2c36;border-radius:18px;padding:22px 24px;display:grid;grid-template-columns:52px 1fr;gap:14px;align-items:start}
 .steps b{width:44px;height:44px;border-radius:50%;background:var(--peri-lift);color:#0b0b14;display:grid;place-items:center;font-size:19px}
 .steps p{font-size:19px;line-height:1.4}
+.rep{margin-top:34px;background:#1f1f26;border:1px solid #2c2c36;border-radius:20px;padding:22px 26px;max-width:620px}
+.rep small{display:block;font-size:13px;color:#9A9AA4;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.rep b{display:block;font-size:26px;color:#fff;letter-spacing:-.01em}
+.rep-default span{display:block;font-size:17px;color:#C9C9D2;margin-top:6px}
+.rep .btns{margin-top:16px}
 .contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:auto;padding-top:22px;border-top:1px solid #2c2c36}
 .contact small{display:block;font-size:13px;color:#9A9AA4;letter-spacing:.05em;text-transform:uppercase}
 .contact span{font-size:18px;font-weight:600;user-select:all}
@@ -436,6 +441,7 @@ img{-webkit-user-drag:none;user-select:none}
   .fit{grid-template-columns:1fr}
   .cta{grid-template-columns:1fr;gap:26px}.cta h2{font-size:52px}.cta .l p{font-size:17px}
   .contact{grid-template-columns:1fr;margin-top:24px}
+  .rep{padding:18px}.rep b{font-size:21px}.rep-default span{font-size:15px}
   .btn{font-size:16px;padding:13px 20px}
 }
 @media (max-width:420px){.svc,.team{grid-template-columns:1fr}.wins{grid-template-columns:1fr}}
@@ -663,29 +669,30 @@ img{-webkit-user-drag:none;user-select:none}
 </section>
 
 <!-- CTA -->
-<section class="slide s-cta" data-title="Book your review">
+<section class="slide s-cta" data-title="Next steps">
   <div class="cta">
     <div class="l">
       <img src="m/lockup-white.webp" alt="Scaling Socials" width="900" height="265" style="width:220px;height:auto">
       <h2 style="margin-top:56px">Let's find your <span class="serif">next</span> crore.</h2>
-      <p>A free 30-minute account review: your account on screen, your break-even ROAS with the maths shown, and a first-30-days plan. You keep the plan whether you sign or not.</p>
-      <div class="btns">
-        <a class="btn" href="https://wa.me/919606713608?text=Hi%2C%20I%27d%20like%20a%20free%20account%20review%20for%20my%20brand" target="_blank" rel="noopener">Book on WhatsApp</a>
-        <a class="btn ghost" href="https://scalingsocials.com/audit/" target="_blank" rel="noopener">Request on the website</a>
+      <p>Liked what you saw? Your Scaling Socials contact can set up a free 30-minute account review for your brand, with your break-even ROAS worked out and a first-30-days plan you keep either way.</p>
+      <div class="rep" id="repCard">
+        <small>Your Scaling Socials contact</small>
+        <div class="rep-default" id="repDefault"><b>Reply to the person who shared this deck.</b><span>The message this link came in is your direct line to us.</span></div>
+        <div class="rep-named" id="repNamed" hidden><b id="repName"></b><div class="btns"><a class="btn" id="repWa" href="#" target="_blank" rel="noopener">WhatsApp <span id="repFirst"></span></a><a class="btn ghost" id="repCall" href="#">Call</a></div></div>
       </div>
     </div>
     <div class="steps">
-      <div><b>1</b><p>We message you on WhatsApp within 2 working hours to fix a time.</p></div>
-      <div><b>2</b><p>You share read-only access to Meta, Google and Shopify or GA4, so we come prepared.</p></div>
-      <div><b>3</b><p>30 minutes with your account on screen. A written audit follows within 3 working days.</p></div>
+      <div><b>1</b><p>Tell your contact you'd like a review. They'll fix a 30-minute slot that suits you.</p></div>
+      <div><b>2</b><p>Share read-only access to Meta, Google and Shopify or GA4, so we come prepared.</p></div>
+      <div><b>3</b><p>We go through your account together. A written audit follows within 3 working days, yours to keep.</p></div>
     </div>
   </div>
   <div class="contact">
-    <div><small>WhatsApp or call</small><span>+91 96067 13608</span></div>
-    <div><small>Email</small><span>support@scalingsocials.com</span></div>
-    <div><small>Studio</small><span>203, CMR Main Rd, HRBR Layout, Bengaluru 560043</span></div>
+    <div><small>Website</small><span>scalingsocials.com</span></div>
+    <div><small>Instagram</small><span>@scalingsocialsofficial</span></div>
+    <div><small>Studio</small><span>HRBR Layout, Bengaluru</span></div>
   </div>
-  <div class="foot"><span>scalingsocials.com · @scalingsocialsofficial</span><span class="pg"></span></div>
+  <div class="foot"><span>Scaling Socials Media LLP</span><span class="pg"></span></div>
 </section>
 
 </div></div>
@@ -917,6 +924,15 @@ addEventListener('resize',setMode);
   const m=h.match(/^#for-([A-Za-z0-9._~-]+)$/);
   if(m){ $('#prepName').textContent=m[1].replace(/[-_.~]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()); $('#prepared').hidden=false; }
   const s=h.match(/^#s(\d+)$/); if(s) cur=Math.min(N-1,Math.max(0,+s[1]-1));
+  // shared by a sales rep: ?by=Name&wa=91XXXXXXXXXX
+  const q=new URLSearchParams(location.search), by=(q.get('by')||'').trim().slice(0,40), wa=(q.get('wa')||'').replace(/\D/g,'');
+  if(by&&wa.length>=10){
+    const brand=m?$('#prepName').textContent:'';
+    const msg=`Hi ${by.split(' ')[0]}, I went through the Scaling Socials portfolio and would like a free account review${brand?' for '+brand:''}.`;
+    $('#repName').textContent=by; $('#repFirst').textContent=by.split(' ')[0];
+    $('#repWa').href='https://wa.me/'+wa+'?text='+encodeURIComponent(msg); $('#repCall').href='tel:+'+wa;
+    $('#repDefault').hidden=true; $('#repNamed').hidden=false;
+  }
 })();
 setMode();
 </script>
