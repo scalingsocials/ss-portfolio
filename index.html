@@ -220,10 +220,25 @@ img{-webkit-user-drag:none;user-select:none}
 .shots figcaption{padding:8px 4px 0!important}
 .shots figcaption{font-size:14px;color:var(--mute);padding:10px 4px 2px}
 
+/* ---------- packaging ---------- */
+.pack{display:grid;grid-template-columns:1.25fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:18px;flex:1;min-height:0;margin-bottom:44px}
+.pack figure{margin:0;border-radius:22px;overflow:hidden;position:relative;display:flex;align-items:center;justify-content:center;padding:18px 18px 64px;min-height:0}
+.pack .pk1{grid-row:span 2;padding-bottom:72px}
+.pack .pk4{grid-column:span 2}
+.pack img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:12px;cursor:zoom-in;box-shadow:0 12px 30px #1d1b3a26}
+.pack figcaption{position:absolute;left:22px;right:22px;bottom:16px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.pack figcaption b{font-size:20px;letter-spacing:-.01em}.pack figcaption span{font-size:15px;color:#3c3c44}
 /* ---------- walkthrough ---------- */
 .walk{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:36px;align-items:start}
 .vframe{aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--ink);box-shadow:0 20px 50px #1d1b3a2e}
+.vframe{position:relative}
 .vframe iframe{width:100%;height:100%;border:0;display:block}
+.vguard{position:absolute;top:0;right:0;width:84px;height:84px;background:#16161A;border-bottom-left-radius:20px;display:grid;place-items:center;z-index:2}
+.vguard img{width:38px;height:auto}
+.vfs{position:absolute;left:16px;top:16px;z-index:2;border:0;border-radius:999px;background:#16161Acc;color:#fff;font:600 14px var(--f-sans);padding:9px 14px;cursor:pointer}
+.vfs:hover{background:var(--peri)}
+.vframe:fullscreen{border-radius:0;aspect-ratio:auto;width:100vw;height:100vh}
+.vframe:fullscreen .vfs{display:none}
 .wpts{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .wpts li{background:var(--lilac);border-radius:18px;padding:20px 22px;display:grid;gap:6px}
 .wpts li:nth-child(2){background:var(--mint)}.wpts li:nth-child(3){background:var(--butter)}
@@ -387,6 +402,7 @@ img{-webkit-user-drag:none;user-select:none}
   .intl{grid-template-columns:1fr 1fr;gap:10px}.intl .h{grid-column:1/-1}.intl .c b{font-size:22px}
   .shots{grid-template-columns:1fr}
   .shots img{height:auto}
+  .pack{grid-template-columns:1fr;grid-template-rows:none;margin-bottom:30px}.pack .pk1{grid-row:auto}.pack .pk4{grid-column:auto}.pack figure{padding:12px 12px 56px}.pack figcaption{flex-direction:column;gap:2px;left:14px;bottom:10px}.pack figcaption b{font-size:16px}.pack figcaption span{font-size:13px}
   .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
@@ -516,9 +532,9 @@ img{-webkit-user-drag:none;user-select:none}
 
 <!-- LOOM WALKTHROUGH -->
 <section class="slide" data-title="Inside a live ad account">
-  <div class="head"><h2>Inside a <span class="serif t-peri">live</span> ad account</h2><p>A screen recording from one of the accounts we run, straight from Meta Ads Manager. Press play, or open it full screen.</p></div>
+  <div class="head"><h2>Inside a <span class="serif t-peri">live</span> ad account</h2><p>A screen recording from one of the accounts we run, straight from Meta Ads Manager. Press play to watch it here.</p></div>
   <div class="walk">
-    <div class="vframe"><iframe data-src="https://drive.google.com/file/d/1uzZheGeIJNh6BpbQdwAo-qTk8YNnI0HY/preview" title="Walkthrough of a live client ad account" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe></div>
+    <div class="vframe"><iframe data-src="https://drive.google.com/file/d/1uzZheGeIJNh6BpbQdwAo-qTk8YNnI0HY/preview" title="Walkthrough of a live client ad account" allow="autoplay" loading="lazy"></iframe><div class="vguard" aria-hidden="true"><img src="m/mark.webp" alt=""></div><button type="button" class="vfs" aria-label="Play full screen">&#x2922; Full screen</button></div>
     <ul class="wpts">
       <li><b>Unedited</b><span>Recorded inside Ads Manager, not a mock-up or a slide.</span></li>
       <li><b>Real spend</b><span>A live client account we manage day to day.</span></li>
@@ -563,6 +579,18 @@ img{-webkit-user-drag:none;user-select:none}
   <div class="head"><h2>Custom websites, <span class="serif t-peri">any industry</span></h2><p>Fast static sites and lead-gen pages for brands outside ecommerce.</p></div>
   <div class="wgrid w2" id="webSites"></div>
   <div class="foot"><span>Web development</span><span class="pg"></span></div>
+</section>
+
+<!-- PACKAGING + PRINT -->
+<section class="slide" data-title="Packaging and print">
+  <div class="head"><h2>Packaging, branding <span class="serif t-peri">and print</span></h2><p>Beyond the feed: product ranges, pouches and print collateral designed by the same desk. Click any piece to enlarge.</p></div>
+  <div class="pack">
+    <figure class="pk1" style="background:var(--blush)"><img src="m/pk-pouch.webp" alt="Superfood snack pouch packaging, four flavours" data-zoom loading="lazy" width="1400" height="1418"><figcaption><b>Superfood snack pouches</b><span>Four-flavour range, pouch system</span></figcaption></figure>
+    <figure style="background:var(--butter)"><img src="m/pk-skin.webp" alt="Skincare product range packaging" data-zoom loading="lazy" width="1400" height="1247"><figcaption><b>Skincare range</b><span>Five SKUs, one visual system</span></figcaption></figure>
+    <figure style="background:var(--lilac)"><img src="m/pk-nuts.webp" alt="Roasted walnut snack pouch packaging" data-zoom loading="lazy" width="1357" height="1009"><figcaption><b>Walnut snacks</b><span>Three flavours, stand-up pouches</span></figcaption></figure>
+    <figure class="pk4" style="background:var(--mint)"><img src="m/pk-flyer.webp" alt="Industrial training programme brochure" data-zoom loading="lazy" width="1102" height="853"><figcaption><b>Industrial brochure</b><span>Tri-fold print collateral</span></figcaption></figure>
+  </div>
+  <div class="foot"><span>Branding and packaging</span><span class="pg"></span></div>
 </section>
 
 <!-- VOICES -->
@@ -787,6 +815,8 @@ tpl.remove();
     g.innerHTML=groups[+g.dataset.look].map(c=>`<button type="button" data-full="c/${c[0]}" aria-label="Enlarge creative" style="aspect-ratio:${c[1]}"><img src="c/${c[0]}" alt="Ad creative made by Scaling Socials" loading="lazy" decoding="async" width="${Math.round(570*c[1])}" height="570"></button>`).join(''); });
 })();
 
+// walkthrough: own full-screen (keeps the guard over Drive's pop-out)
+document.querySelectorAll('.vfs').forEach(b=>{ const f=b.closest('.vframe'); if(!f.requestFullscreen){ b.remove(); return; } b.onclick=()=>f.requestFullscreen().catch(()=>{}); });
 // sliders
 document.querySelectorAll('.rail-wrap').forEach(w=>{
   const r=w.querySelector('.rail'), c=w.querySelector('.rc'), pv=w.querySelector('.prev'), nx=w.querySelector('.next');
