@@ -928,7 +928,7 @@ addEventListener('resize',setMode);
   const REPS={
     // code: ['Full name','91XXXXXXXXXX'],
   };
-  const code=(new URLSearchParams(location.search).get('rep')||'').toLowerCase().trim(), r=REPS[code];
+  const code=(new URLSearchParams(location.search).get('rep')||'').toLowerCase().trim(), r=Object.prototype.hasOwnProperty.call(REPS,code)?REPS[code]:null;
   if(r){
     const by=r[0], wa=r[1], brand=m?$('#prepName').textContent:'';
     const msg=`Hi ${by.split(' ')[0]}, I went through the Scaling Socials portfolio and would like a free account review${brand?' for '+brand:''}.`;
