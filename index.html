@@ -57,11 +57,20 @@ img{-webkit-user-drag:none;user-select:none}
 .nav button:hover{background:var(--lilac)}
 .nav .count{font-size:14px;color:var(--mute);padding:0 6px;min-width:64px;text-align:center}
 .toc{position:fixed;inset:0;z-index:30;background:#16161acc;display:grid;place-items:center;padding:24px}
-.toc .panel{background:var(--paper);border-radius:20px;max-width:880px;width:100%;max-height:86vh;overflow:auto;padding:28px}
-.toc ol{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px}
-.toc li button{all:unset;cursor:pointer;display:flex;gap:12px;padding:10px 8px;border-radius:10px;width:100%;box-sizing:border-box;font-size:17px}
-.toc li button:hover,.toc li button:focus-visible{background:var(--lilac)}
-.toc li span{color:var(--mute);min-width:26px;font-variant-numeric:tabular-nums}
+.toc .panel{background:var(--paper);border-radius:24px;max-width:1120px;width:100%;max-height:86vh;overflow:auto;padding:30px 32px 26px}
+.toc .thead{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.toc .thead h2{font-size:30px}
+.toc .tx{border:0;background:var(--lilac);border-radius:999px;width:44px;height:44px;font-size:22px;line-height:1;cursor:pointer;color:var(--ink)}
+.toc .tx:hover{background:var(--ink);color:#fff}
+.tocg{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
+.tocg section{border-radius:18px;padding:16px 10px 10px}
+.tocg section:nth-child(1){background:var(--lilac)}.tocg section:nth-child(2){background:var(--mint)}.tocg section:nth-child(3){background:var(--butter)}.tocg section:nth-child(4){background:var(--blush)}
+.tocg h4{margin:0 0 8px 10px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--peri-deep)}
+.tocg ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.toc li button{all:unset;cursor:pointer;display:flex;align-items:baseline;gap:10px;padding:9px 10px;border-radius:10px;width:100%;box-sizing:border-box;font-size:16px;line-height:1.3}
+.toc li button:hover,.toc li button:focus-visible{background:#ffffffb3}
+.toc li button[aria-current="true"]{background:#fff;font-weight:600}
+.toc li span{color:var(--mute);font-size:13px;min-width:20px;font-variant-numeric:tabular-nums}
 .hint{position:fixed;left:18px;bottom:22px;z-index:20;font-size:13px;color:var(--mute)}
 
 /* ---------- 01 cover ---------- */
@@ -406,6 +415,12 @@ img{-webkit-user-drag:none;user-select:none}
   .shots{grid-template-columns:1fr}
   .shots img{height:auto}
   .pack{grid-template-columns:1fr;grid-template-rows:none;margin-bottom:30px}.pack .pk1{grid-row:auto}.pack .pk4{grid-column:auto}.pack figure{padding:12px 12px 56px}.pack figcaption{flex-direction:column;gap:2px;left:14px;bottom:10px}.pack figcaption b{font-size:16px}.pack figcaption span{font-size:13px}
+  .toc{place-items:end center;padding:0}
+  .toc .panel{border-radius:24px 24px 0 0;max-height:80vh;padding:10px 16px calc(18px + env(safe-area-inset-bottom,0px))}
+  .toc .panel::before{content:"";display:block;width:40px;height:4px;border-radius:4px;background:var(--rule);margin:0 auto 12px}
+  .toc .thead{margin-bottom:12px}.toc .thead h2{font-size:24px}.toc .tx{width:38px;height:38px;font-size:19px}
+  .tocg{grid-template-columns:1fr;gap:10px}.tocg section{padding:12px 6px 6px}
+  .toc li button{font-size:15px;padding:9px 10px}
   .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
@@ -682,7 +697,7 @@ img{-webkit-user-drag:none;user-select:none}
   <button type="button" data-act="toc" aria-label="Contents">Contents</button>
 </div>
 <div class="toc" id="toc" hidden role="dialog" aria-modal="true" aria-label="Contents">
-  <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:32px">Contents</h2><button type="button" data-act="closetoc" style="border:0;background:var(--lilac);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer">Close</button></div><ol id="tocList"></ol></div>
+  <div class="panel"><div class="thead"><h2>Contents</h2><button type="button" class="tx" data-act="closetoc" aria-label="Close">&times;</button></div><div class="tocg" id="tocList"></div></div>
 </div>
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Enlarged view"><button type="button" id="lbx">Close</button><img id="lbimg" alt=""></div>
 
@@ -850,7 +865,13 @@ document.addEventListener('contextmenu',e=>{ if(e.target.closest('img,video,#lb'
 document.addEventListener('dragstart',e=>{ if(e.target.tagName==='IMG') e.preventDefault(); });
 const N=slides.length;
 slides.forEach((s,i)=>{ const pg=s.querySelector('.pg'); if(pg) pg.textContent=String(i+1).padStart(2,'0'); s.setAttribute('aria-roledescription','slide'); if(!s.getAttribute('aria-label')) s.setAttribute('aria-label',(i+1)+' of '+N+': '+s.dataset.title); });
-$('#tocList').innerHTML=slides.map((s,i)=>`<li><button type="button" data-go="${i}"><span>${String(i+1).padStart(2,'0')}</span>${s.dataset.title}</button></li>`).join('');
+(function(){
+  const SHORT={"A few of many: results":"Results at a glance","Wellness D2C":"Case study: wellness","Mid-luxury women's western wear":"Case study: western wear","More case studies":"Four more accounts","Straight from Ads Manager":"Ads Manager proof","Inside a live ad account":"Ad account walkthrough","Book your review":"Book your review"};
+  const GROUPS=[['Who we are','Cover'],['Results','A few of many: results'],['Our work','Creative lookbook I'],['Team & next steps','Client voices']];
+  const starts=GROUPS.map(g=>slides.findIndex(s=>s.dataset.title===g[1]));
+  $('#tocList').innerHTML=GROUPS.map((g,k)=>{ const a=starts[k]<0?0:starts[k], b=k<3&&starts[k+1]>0?starts[k+1]:slides.length;
+    return `<section><h4>${g[0]}</h4><ol>${slides.slice(a,b).map((s,j)=>{const i=a+j;return `<li><button type="button" data-go="${i}"><span>${String(i+1).padStart(2,'0')}</span>${SHORT[s.dataset.title]||s.dataset.title}</button></li>`}).join('')}</ol></section>`; }).join('');
+})();
 const flow=()=>matchMedia('(max-width:900px), (max-height:520px) and (max-width:1000px)').matches;
 let cur=0;
 function fit(){ const st=$('#stage'); if(flow()){ st.style.transform=''; return; } const s=Math.min(innerWidth/1640, innerHeight/940); st.style.transform=`translate(-50%,-50%) scale(${s})`; }
@@ -873,7 +894,7 @@ function setMode(){ fit(); if(flow()){ slides.forEach(s=>{ s.inert=false; s.clas
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-act]'); if(a){ const t=a.dataset.act;
     if(t==='next') go(cur+1); if(t==='prev') go(cur-1);
-    if(t==='toc'){ $('#toc').hidden=false; $('#toc').querySelector('button[data-go]').focus(); }
+    if(t==='toc'){ $('#toc').hidden=false; let c=cur; if(flow()){ const y=innerHeight*0.3; c=slides.findIndex(s=>s.getBoundingClientRect().bottom>y); if(c<0)c=0; } $('#toc').querySelectorAll('[data-go]').forEach(b=>b.setAttribute('aria-current',String(+b.dataset.go===c))); const btn=$('#toc').querySelector('[aria-current="true"]'); if(btn){ btn.scrollIntoView({block:'nearest'}); if(!flow()) btn.focus(); } }
     if(t==='closetoc') $('#toc').hidden=true; }
   const g=e.target.closest('[data-go]'); if(g){ $('#toc').hidden=true; go(+g.dataset.go); }
   const z=e.target.closest('[data-full],[data-zoom]'); if(z){ $('#lbimg').src=z.dataset.full||z.getAttribute('src'); $('#lbimg').alt=z.getAttribute('alt')||'Ad creative made by Scaling Socials'; $('#lb').hidden=false; $('#lbx').focus(); }
