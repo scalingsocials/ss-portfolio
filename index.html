@@ -42,6 +42,8 @@ p{margin:0}
 .slide.prev{transform:translateX(-40px) scale(.985)}
 .slide .foot{position:absolute;left:72px;right:72px;bottom:26px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mute);letter-spacing:.04em}
 .slide .foot img{height:18px;width:auto}
+.slide .wm{position:absolute;right:60px;top:50%;width:520px;height:auto;transform:translateY(-50%) rotate(-14deg);opacity:.045;pointer-events:none;user-select:none;z-index:5}
+img{-webkit-user-drag:none;user-select:none}
 .head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:34px}
 .head h2{font-size:64px}
 .head p{max-width:520px;font-size:19px;line-height:1.45;color:var(--mute)}
@@ -213,16 +215,31 @@ p{margin:0}
 /* ---------- proof screenshots ---------- */
 .shots{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;flex:1;align-content:start}
 .shots figure{margin:0;background:var(--surface);border-radius:16px;padding:12px;border:1px solid var(--rule)}
-.shots img{width:100%;height:auto;border-radius:8px;cursor:zoom-in}
+.shots figure{padding:10px}
+.shots img{width:100%;height:250px;object-fit:contain;background:#fff;border-radius:8px;cursor:zoom-in}
+.shots figcaption{padding:8px 4px 0!important}
 .shots figcaption{font-size:14px;color:var(--mute);padding:10px 4px 2px}
 
-/* ---------- lookbook ---------- */
-.look{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;align-content:start}
-.look button{all:unset;cursor:zoom-in;border-radius:12px;overflow:hidden;position:relative;background:var(--surface);aspect-ratio:1}
-.look button:focus-visible{outline:3px solid var(--peri);outline-offset:2px}
-.look img{width:100%;height:100%;object-fit:contain;transition:transform .5s}
-.look button:hover img{transform:scale(1.05)}
-.look .tall{grid-row:span 2}
+/* ---------- sliders (lookbook + proof) ---------- */
+.rail-wrap{display:flex;flex-direction:column;min-height:0;margin:0 -72px}
+.rail{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding:0 72px;padding:6px 72px 10px;scrollbar-width:none;position:relative;align-items:flex-start;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent)}
+.rail.end{-webkit-mask-image:none;mask-image:none}
+.rail::-webkit-scrollbar{display:none}
+.rail>*{flex:none;scroll-snap-align:start}
+.rail-ctl{display:flex;align-items:center;gap:14px;padding:16px 72px 0}
+.rail-ctl .rb{width:48px;height:48px;border-radius:999px;border:1.5px solid var(--rule);background:var(--paper);font-size:20px;cursor:pointer;color:var(--ink);display:grid;place-items:center;transition:background .2s,color .2s}
+.rail-ctl .rb:hover:not(:disabled){background:var(--ink);color:#fff;border-color:var(--ink)}
+.rail-ctl .rb:disabled{opacity:.3;cursor:default}
+.rail-ctl .rc{font-size:15px;color:var(--mute);letter-spacing:.04em;min-width:70px}
+.rail-ctl .rh{margin-left:auto;font-size:14px;color:var(--mute)}
+.look button{all:unset;flex:none;scroll-snap-align:start;cursor:zoom-in;border-radius:18px;overflow:hidden;height:570px;background:var(--surface);box-shadow:0 14px 34px #1d1b3a1a;transition:transform .35s}
+.look button:hover{transform:translateY(-6px)}
+.look button:focus-visible{outline:3px solid var(--peri);outline-offset:3px}
+.look img{height:100%;width:100%;display:block;object-fit:contain}
+.proof figure{margin:0;width:1220px;background:var(--surface);border:1px solid var(--rule);border-radius:20px;padding:14px}
+.proof img{width:100%;height:auto;display:block;border-radius:10px;cursor:zoom-in;background:#fff}
+.proof figcaption{display:flex;gap:14px;align-items:baseline;padding:14px 6px 2px;font-size:17px;color:var(--mute)}
+.proof figcaption b{font-size:22px;color:var(--ink);letter-spacing:-.01em}
 
 /* ---------- reels ---------- */
 .reels{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px;flex:1;align-items:center}
@@ -279,11 +296,14 @@ p{margin:0}
 .life img{width:100%;height:100%;object-fit:cover;border-radius:16px}
 
 /* ---------- services ---------- */
-.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.svc div{border-radius:18px;padding:24px;background:var(--surface);min-height:200px;display:flex;flex-direction:column;gap:10px}
+.svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:18px;flex:1;margin-bottom:44px}
+.svc div{border-radius:22px;padding:28px 28px 26px;background:var(--surface);display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden}
+.svc .sn{font-family:var(--f-serif,serif);font-style:italic;font-size:40px;line-height:1;opacity:.55;margin-bottom:auto}
 .svc div:nth-child(1){background:var(--lilac)}.svc div:nth-child(2){background:var(--butter)}.svc div:nth-child(3){background:var(--mint)}.svc div:nth-child(4){background:var(--blush)}
+.svc div:nth-child(5){background:var(--ink)}.svc div:nth-child(6){background:var(--peri)}.svc div:nth-child(7){background:var(--teal)}.svc div:nth-child(8){background:var(--plum)}
+.svc div:nth-child(n+5) h3{color:#fff}.svc div:nth-child(n+5) ul{color:#ffffffc8}.svc div:nth-child(n+5) .sn{color:#fff}
 .svc h3{font-size:25px;letter-spacing:-.01em}
-.svc ul{margin:0;padding-left:18px;font-size:16px;line-height:1.45;color:#3c3c44}
+.svc ul{margin:0;padding-left:18px;font-size:17px;line-height:1.5;color:#3c3c44}
 .fit{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:18px}
 .fit div{border-radius:18px;padding:22px 26px;border:1.5px solid var(--rule)}
 .fit h3{font-size:22px;margin-bottom:8px}
@@ -322,6 +342,7 @@ p{margin:0}
   .stage{position:static;width:auto;height:auto;transform:none!important}
   .slide{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;margin-bottom:14px;padding:30px 20px 56px;border-radius:18px;box-shadow:none}
   .slide .foot{left:20px;right:20px;bottom:18px;font-size:11px}
+  .slide .wm{width:62%;right:6%}
   .progress,.nav .count,.hint{display:none}
   .nav{left:50%;right:auto;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px))}
   .nav [data-act="prev"],.nav [data-act="next"]{display:none}
@@ -357,8 +378,10 @@ p{margin:0}
   .wins{grid-template-columns:1fr 1fr;gap:10px}.win{min-height:0;padding:18px}.win b.big{font-size:40px}.win h3{font-size:18px}.win p{font-size:14px}
   .intl{grid-template-columns:1fr 1fr;gap:10px}.intl .h{grid-column:1/-1}.intl .c b{font-size:22px}
   .shots{grid-template-columns:1fr}
-  .look{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;gap:8px}
-  .look button{aspect-ratio:1}
+  .shots img{height:auto}
+  .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
+  .look button{height:300px}
+  .proof figure{width:86vw;padding:8px}.proof figcaption{font-size:13px;flex-direction:column;gap:2px}.proof figcaption b{font-size:16px}
   .reels{grid-template-columns:repeat(6,62%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}
   .reels .phone{scroll-snap-align:start}.reels .phone:nth-child(even){transform:none}
   .wgrid.w3,.wgrid.w2{grid-template-columns:minmax(0,1fr)}.w2 .wbox{width:100%}
@@ -477,30 +500,25 @@ p{margin:0}
 
 <!-- PROOF -->
 <section class="slide" data-title="Straight from Ads Manager">
-  <div class="head"><h2>Straight from <span class="serif t-peri">Ads Manager</span></h2><p>Live views from four client accounts, with campaign and account names hidden. Click any view to enlarge.</p></div>
-  <div class="shots">
-    <figure><img src="m/ads-1.webp" alt="Meta Ads Manager view, client account 1" data-zoom width="1600" height="594"><figcaption>Account 1 · campaign-level purchases and ROAS</figcaption></figure>
-    <figure><img src="m/ads-2.webp" alt="Meta Ads Manager view, client account 2" data-zoom width="1600" height="646"><figcaption>Account 2 · ad set view</figcaption></figure>
-    <figure><img src="m/ads-3.webp" alt="Meta Ads Manager view, client account 3" data-zoom width="1600" height="537"><figcaption>Account 3 · ad set view</figcaption></figure>
-    <figure><img src="m/ads-4.webp" alt="Meta Ads Manager view, client account 4" data-zoom width="1600" height="604"><figcaption>Account 4 · ad set view</figcaption></figure>
-  </div>
-  <div class="foot"><span>Scaling Socials</span><span class="pg"></span></div>
+  <div class="head"><h2>Straight from <span class="serif t-peri">Ads Manager</span></h2><p>Twelve live client accounts, read off Meta's own totals row. Campaign and account names hidden.</p></div>
+  <div class="rail-wrap"><div class="rail proof"><figure><img src="m/ads-1.webp" alt="Meta Ads Manager view, client account 1" data-zoom loading="lazy" width="1600" height="594"><figcaption><b>13.21 avg ROAS</b><span>₹18.21 L purchase value</span><span style="margin-left:auto">Account 01</span></figcaption></figure><figure><img src="m/ads-2.webp" alt="Meta Ads Manager view, client account 2" data-zoom loading="lazy" width="1600" height="646"><figcaption><b>9.27 avg ROAS</b><span>₹2.53 Cr purchase value</span><span style="margin-left:auto">Account 02</span></figcaption></figure><figure><img src="m/ads-3.webp" alt="Meta Ads Manager view, client account 3" data-zoom loading="lazy" width="1600" height="537"><figcaption><b>10.94 avg ROAS</b><span>₹1.44 Cr purchase value</span><span style="margin-left:auto">Account 03</span></figcaption></figure><figure><img src="m/ads-4.webp" alt="Meta Ads Manager view, client account 4" data-zoom loading="lazy" width="1600" height="604"><figcaption><b>8.03 avg ROAS</b><span>₹2.84 Cr purchase value</span><span style="margin-left:auto">Account 04</span></figcaption></figure><figure><img src="m/ads-5.webp" alt="Meta Ads Manager view, client account 5" data-zoom loading="lazy" width="1600" height="608"><figcaption><b>16.41 avg ROAS</b><span>₹7.32 L purchase value</span><span style="margin-left:auto">Account 05</span></figcaption></figure><figure><img src="m/ads-6.webp" alt="Meta Ads Manager view, client account 6" data-zoom loading="lazy" width="1600" height="737"><figcaption><b>8.60 avg ROAS</b><span>₹14.04 L purchase value</span><span style="margin-left:auto">Account 06</span></figcaption></figure><figure><img src="m/ads-7.webp" alt="Meta Ads Manager view, client account 7" data-zoom loading="lazy" width="1600" height="665"><figcaption><b>9.01 avg ROAS</b><span>₹5.03 L purchase value</span><span style="margin-left:auto">Account 07</span></figcaption></figure><figure><img src="m/ads-8.webp" alt="Meta Ads Manager view, client account 8" data-zoom loading="lazy" width="1600" height="681"><figcaption><b>6.09 avg ROAS</b><span>₹21.40 L purchase value</span><span style="margin-left:auto">Account 08</span></figcaption></figure><figure><img src="m/ads-9.webp" alt="Meta Ads Manager view, client account 9" data-zoom loading="lazy" width="1600" height="690"><figcaption><b>6.52 avg ROAS</b><span>₹7.09 L purchase value</span><span style="margin-left:auto">Account 09</span></figcaption></figure><figure><img src="m/ads-10.webp" alt="Meta Ads Manager view, client account 10" data-zoom loading="lazy" width="1600" height="664"><figcaption><b>9.16 avg ROAS</b><span>₹11.78 L purchase value</span><span style="margin-left:auto">Account 10</span></figcaption></figure><figure><img src="m/ads-11.webp" alt="Meta Ads Manager view, client account 11" data-zoom loading="lazy" width="1600" height="667"><figcaption><b>5.28 avg ROAS</b><span>₹18.59 L purchase value</span><span style="margin-left:auto">Account 11</span></figcaption></figure><figure><img src="m/ads-12.webp" alt="Meta Ads Manager view, client account 12" data-zoom loading="lazy" width="1600" height="688"><figcaption><b>13.71 avg ROAS</b><span>₹4.84 L purchase value</span><span style="margin-left:auto">Account 12</span></figcaption></figure></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click to enlarge</span></div></div>
+  <div class="foot"><span>Meta Ads Manager · client accounts</span><span class="pg"></span></div>
 </section>
 
 <!-- LOOKBOOK x3 -->
 <section class="slide" data-title="Creative lookbook I">
-  <div class="head"><h2>Made in-house, <span class="serif t-peri">tested weekly</span></h2><p>One standout from each brand's folder: statics, carousels and stories from our design desk. Fashion and ethnic wear first.</p></div>
-  <div class="look" data-look="0"></div>
+  <div class="head"><h2>Made in-house, <span class="serif t-peri">tested weekly</span></h2><p>One standout from each brand's folder, made by our design desk. Fashion and ethnic wear first.</p></div>
+  <div class="rail-wrap"><div class="rail look" data-look="0"></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click to enlarge</span></div></div>
   <div class="foot"><span>Creative lookbook · 1 of 3</span><span class="pg"></span></div>
 </section>
 <section class="slide" data-title="Creative lookbook II">
   <div class="head"><h2>Across <span class="serif t-peri">every</span> category</h2><p>Kidswear, beauty, home, footwear, gifting and lifestyle. Every piece built for a paid placement first.</p></div>
-  <div class="look" data-look="1"></div>
+  <div class="rail-wrap"><div class="rail look" data-look="1"></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click to enlarge</span></div></div>
   <div class="foot"><span>Creative lookbook · 2 of 3</span><span class="pg"></span></div>
 </section>
 <section class="slide" data-title="Creative lookbook III">
   <div class="head"><h2>No two <span class="serif t-peri">alike</span></h2><p>Seventy-two brands, seventy-two looks. Click any creative to see it full size.</p></div>
-  <div class="look" data-look="2"></div>
+  <div class="rail-wrap"><div class="rail look" data-look="2"></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click to enlarge</span></div></div>
   <div class="foot"><span>Creative lookbook · 3 of 3</span><span class="pg"></span></div>
 </section>
 
@@ -559,22 +577,18 @@ p{margin:0}
   <div class="foot"><span>Scaling Socials</span><span class="pg"></span></div>
 </section>
 
-<!-- SERVICES + FIT -->
+<!-- SERVICES -->
 <section class="slide" data-title="What we do">
   <div class="head"><h2>Media, creative and the store, <span class="serif t-peri">under one roof</span></h2></div>
   <div class="svc">
-    <div><h3>Meta &amp; Instagram ads</h3><ul><li>Prospecting, retargeting, retention</li><li>Advantage+, manual or hybrid</li><li>Budget moved daily against break-even</li></ul></div>
-    <div><h3>Google Ads</h3><ul><li>Brand and non-brand Search</li><li>Shopping and Performance Max</li><li>Feed, negatives and placements cleaned weekly</li></ul></div>
-    <div><h3>In-house creative</h3><ul><li>Statics, carousels, UGC-style video</li><li>Hook, angle and offer variations</li><li>A creative scorecard every week</li></ul></div>
-    <div><h3>Store, CRO &amp; tracking</h3><ul><li>Product page, cart and checkout fixes</li><li>Pixel and Conversions API set up properly</li><li>A weekly review call on what moved and why</li></ul></div>
-    <div><h3>Shopify &amp; web</h3><ul><li>Custom Shopify themes and builds</li><li>Migrations, redesigns, speed work</li><li>Annual maintenance</li></ul></div>
-    <div><h3>SEO</h3><ul><li>Technical audits and fixes</li><li>Ecommerce and local SEO</li><li>Content and link building</li></ul></div>
-    <div><h3>Social media</h3><ul><li>Content calendars and shoots</li><li>Reels and community management</li><li>Monthly reporting</li></ul></div>
-    <div><h3>Branding</h3><ul><li>Logos and brand books</li><li>Packaging design</li><li>Brand assets and print</li></ul></div>
-  </div>
-  <div class="fit">
-    <div class="y"><h3>Best fit</h3><ul><li>D2C brands ready to put ₹40–60K a month into testing</li><li>Women's wear, kidswear, jewellery, beauty, gifting and home</li><li>Selling in India or the UAE</li></ul></div>
-    <div class="n"><h3>Not a fit</h3><ul><li>Pre-launch brands with no sales data yet</li><li>Anyone looking for a guaranteed ROAS</li><li>Brands that can't supply product footage</li></ul></div>
+    <div><span class="sn">01</span><h3>Meta &amp; Instagram ads</h3><ul><li>Prospecting, retargeting, retention</li><li>Advantage+, manual or hybrid</li><li>Budget moved daily against break-even</li></ul></div>
+    <div><span class="sn">02</span><h3>Google Ads</h3><ul><li>Brand and non-brand Search</li><li>Shopping and Performance Max</li><li>Feeds, negatives and placements cleaned weekly</li></ul></div>
+    <div><span class="sn">03</span><h3>In-house creative</h3><ul><li>Statics, carousels, UGC-style video</li><li>Hook, angle and offer variations</li><li>A creative scorecard every week</li></ul></div>
+    <div><span class="sn">04</span><h3>Store, CRO &amp; tracking</h3><ul><li>Product page, cart and checkout fixes</li><li>Pixel and Conversions API set up properly</li><li>A weekly call on what moved and why</li></ul></div>
+    <div><span class="sn">05</span><h3>Shopify stores</h3><ul><li>Custom Shopify themes and builds</li><li>Migrations, redesigns and speed work</li><li>Annual maintenance</li></ul></div>
+    <div><span class="sn">06</span><h3>Web development</h3><ul><li>Custom websites, built from scratch</li><li>Landing pages and lead-gen microsites</li><li>Hosting, speed and upkeep</li></ul></div>
+    <div><span class="sn">07</span><h3>SEO</h3><ul><li>Technical audits and fixes</li><li>Ecommerce and local SEO</li><li>Content and link building</li></ul></div>
+    <div><span class="sn">08</span><h3>Social media</h3><ul><li>Content calendars and shoots</li><li>Reels and community management</li><li>Monthly reporting</li></ul></div>
   </div>
   <div class="foot"><span>Scaling Socials</span><span class="pg"></span></div>
 </section>
@@ -742,18 +756,27 @@ tpl.remove();
     m.appendChild(d); });
 })();
 
-// lookbook grids: 3 slides x 24 (tall images take 2 rows)
+// lookbook sliders: 3 slides x 24
 (function(){
   const groups=[[],[],[]];
-  // keep ~1/3 each, in folder order (fashion first)
-  CREATIVES.forEach((c,i)=>groups[Math.min(2,Math.floor(i/24))].push([c,i]));
+  CREATIVES.forEach((c,i)=>groups[Math.min(2,Math.floor(i/24))].push(c));
   document.querySelectorAll('[data-look]').forEach(g=>{
-    const list=groups[+g.dataset.look]; let cells=0, html='';
-    list.forEach(([c,i])=>{
-      html+=`<button type="button" data-full="c/${c[0]}" aria-label="Enlarge creative"><img src="c/${c[0]}" alt="Ad creative made by Scaling Socials" loading="lazy" decoding="async" width="400" height="${Math.round(400/c[1])}"></button>`; });
-    g.innerHTML=html; });
+    g.innerHTML=groups[+g.dataset.look].map(c=>`<button type="button" data-full="c/${c[0]}" aria-label="Enlarge creative" style="aspect-ratio:${c[1]}"><img src="c/${c[0]}" alt="Ad creative made by Scaling Socials" loading="lazy" decoding="async" width="${Math.round(570*c[1])}" height="570"></button>`).join(''); });
 })();
 
+// sliders
+document.querySelectorAll('.rail-wrap').forEach(w=>{
+  const r=w.querySelector('.rail'), c=w.querySelector('.rc'), pv=w.querySelector('.prev'), nx=w.querySelector('.next');
+  const items=()=>[...r.children];
+  const upd=()=>{ const it=items(); let i=it.findIndex(x=>x.offsetLeft+x.offsetWidth-8>r.scrollLeft+ (r.scrollWidth>r.clientWidth?72:0)); if(i<0)i=0;
+    const atEnd=r.scrollLeft+r.clientWidth>=r.scrollWidth-6; if(atEnd) i=it.length-1;
+    c.textContent=String(i+1).padStart(2,'0')+' / '+String(it.length).padStart(2,'0'); pv.disabled=r.scrollLeft<6; nx.disabled=atEnd; r.classList.toggle('end',atEnd); };
+  const step=d=>{ const it=items(), x=r.scrollLeft; let t=d>0?it.find(e=>e.offsetLeft-72>x+8):[...it].reverse().find(e=>e.offsetLeft-72<x-8); r.scrollTo({left:t?t.offsetLeft-72:(d>0?r.scrollWidth:0),behavior:'smooth'}); };
+  pv.onclick=()=>step(-1); nx.onclick=()=>step(1);
+  r.addEventListener('scroll',upd,{passive:true});
+  r.addEventListener('wheel',e=>{ if(Math.abs(e.deltaY)>Math.abs(e.deltaX)&&r.scrollWidth>r.clientWidth){ const before=r.scrollLeft; r.scrollLeft+=e.deltaY; if(r.scrollLeft!==before) e.preventDefault(); } e.stopPropagation(); },{passive:false});
+  addEventListener('resize',upd); setTimeout(upd,300); upd();
+});
 // reels
 $('#reels').innerHTML=[1,2,3,4,5,6].map(n=>`<div class="phone"><video data-src="v/reel-${n}.mp4" poster="v/reel-${n}.webp" muted loop playsinline preload="none" aria-label="Client reel ${n}"></video></div>`).join('');
 // sites
@@ -763,6 +786,9 @@ $('#webSites').innerHTML=WEB.map(s=>wtile(`${s[0]}-d.webp`,`${s[0]}-m.webp`,s[1]
 
 /* ---------- deck engine ---------- */
 const slides=[...document.querySelectorAll('.slide')];
+slides.forEach(s=>{ const w=document.createElement('img'); w.className='wm'; w.src='m/mark.webp'; w.alt=''; w.setAttribute('aria-hidden','true'); s.appendChild(w); });
+document.addEventListener('contextmenu',e=>{ if(e.target.closest('img,video,#lb')) e.preventDefault(); });
+document.addEventListener('dragstart',e=>{ if(e.target.tagName==='IMG') e.preventDefault(); });
 const N=slides.length;
 slides.forEach((s,i)=>{ const pg=s.querySelector('.pg'); if(pg) pg.textContent=String(i+1).padStart(2,'0'); s.setAttribute('aria-roledescription','slide'); if(!s.getAttribute('aria-label')) s.setAttribute('aria-label',(i+1)+' of '+N+': '+s.dataset.title); });
 $('#tocList').innerHTML=slides.map((s,i)=>`<li><button type="button" data-go="${i}"><span>${String(i+1).padStart(2,'0')}</span>${s.dataset.title}</button></li>`).join('');
@@ -802,7 +828,7 @@ addEventListener('keydown',e=>{
   if(['ArrowLeft','PageUp'].includes(e.key)){ e.preventDefault(); go(cur-1); }
   if(e.key==='Home') go(0); if(e.key==='End') go(N-1);
 });
-let tx=null; addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
+let tx=null; addEventListener('touchstart',e=>{tx=e.target.closest('.rail')?null:e.touches[0].clientX},{passive:true});
 addEventListener('touchend',e=>{ if(tx===null||flow()) return; const dx=e.changedTouches[0].clientX-tx; if(Math.abs(dx)>50) go(cur+(dx<0?1:-1)); tx=null; });
 addEventListener('resize',setMode);
 // personalised cover: #for-brand-name ; deep link: #s7
