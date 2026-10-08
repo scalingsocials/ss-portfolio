@@ -232,7 +232,7 @@ img{-webkit-user-drag:none;user-select:none}
 .walk{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:36px;align-items:start}
 .vframe{aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--ink);box-shadow:0 20px 50px #1d1b3a2e}
 .vframe{position:relative}
-.vframe iframe{width:100%;height:100%;border:0;display:block}
+.vframe video{width:100%;height:100%;display:block;object-fit:contain;background:#16161A}
 .vguard{position:absolute;top:0;right:0;width:84px;height:84px;background:#16161A;border-bottom-left-radius:20px;display:grid;place-items:center;z-index:2}
 .vguard img{width:38px;height:auto}
 .vfs{position:absolute;left:16px;top:16px;z-index:2;border:0;border-radius:999px;background:#16161Acc;color:#fff;font:600 14px var(--f-sans);padding:9px 14px;cursor:pointer}
@@ -403,7 +403,7 @@ img{-webkit-user-drag:none;user-select:none}
   .shots{grid-template-columns:1fr}
   .shots img{height:auto}
   .pack{grid-template-columns:1fr;grid-template-rows:none;margin-bottom:30px}.pack .pk1{grid-row:auto}.pack .pk4{grid-column:auto}.pack figure{padding:12px 12px 56px}.pack figcaption{flex-direction:column;gap:2px;left:14px;bottom:10px}.pack figcaption b{font-size:16px}.pack figcaption span{font-size:13px}
-  .walk{grid-template-columns:1fr;gap:14px}.vframe{aspect-ratio:4/3}.vguard{width:60px;height:60px}.vguard img{width:28px}.vfs{display:none}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
+  .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
   .proof figure{width:86vw;padding:8px}.proof figcaption{font-size:13px;flex-direction:column;gap:2px}.proof figcaption b{font-size:16px}
@@ -534,7 +534,7 @@ img{-webkit-user-drag:none;user-select:none}
 <section class="slide" data-title="Inside a live ad account">
   <div class="head"><h2>Inside a <span class="serif t-peri">live</span> ad account</h2><p>A screen recording from one of the accounts we run, straight from Meta Ads Manager. Press play to watch it here.</p></div>
   <div class="walk">
-    <div class="vframe"><iframe data-src="https://drive.google.com/file/d/1uzZheGeIJNh6BpbQdwAo-qTk8YNnI0HY/preview" title="Walkthrough of a live client ad account" allow="autoplay" loading="lazy"></iframe><div class="vguard" aria-hidden="true"><img src="m/mark.webp" alt=""></div><button type="button" class="vfs" aria-label="Play full screen">&#x2922; Full screen</button></div>
+    <div class="vframe"><video src="v/walkthrough.mp4" poster="v/walkthrough.webp" controls playsinline preload="none" controlsList="nodownload noplaybackrate noremoteplayback" disablePictureInPicture disableRemotePlayback aria-label="Walkthrough of a live client ad account"></video></div>
     <ul class="wpts">
       <li><b>Unedited</b><span>Recorded inside Ads Manager, not a mock-up or a slide.</span></li>
       <li><b>Real spend</b><span>A live client account we manage day to day.</span></li>
@@ -815,10 +815,6 @@ tpl.remove();
     g.innerHTML=groups[+g.dataset.look].map(c=>`<button type="button" data-full="c/${c[0]}" aria-label="Enlarge creative" style="aspect-ratio:${c[1]}"><img src="c/${c[0]}" alt="Ad creative made by Scaling Socials" loading="lazy" decoding="async" width="${Math.round(570*c[1])}" height="570"></button>`).join(''); });
 })();
 
-// walkthrough: own full-screen (keeps the guard over Drive's pop-out)
-// phones/tablets: Drive's player needs native full screen to show the video on iOS, so allow it there
-if(matchMedia('(pointer:coarse)').matches) document.querySelectorAll('.vframe iframe').forEach(f=>{ f.setAttribute('allow','autoplay; fullscreen'); f.setAttribute('allowfullscreen',''); f.setAttribute('webkitallowfullscreen',''); if(f.src&&f.src!=='about:blank'){ const s=f.src; f.src='about:blank'; f.src=s; } });
-document.querySelectorAll('.vfs').forEach(b=>{ const f=b.closest('.vframe'); if(!f.requestFullscreen){ b.remove(); return; } b.onclick=()=>f.requestFullscreen().catch(()=>{}); });
 // sliders
 document.querySelectorAll('.rail-wrap').forEach(w=>{
   const r=w.querySelector('.rail'), c=w.querySelector('.rc'), pv=w.querySelector('.prev'), nx=w.querySelector('.next');
@@ -856,7 +852,6 @@ function media(){
     if(active){ if(!v.src) v.src=v.dataset.src; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); } else v.pause();
   }));
   slides.forEach((s,i)=>{ if(i!==cur && !flow()) s.querySelectorAll('video[controls]').forEach(v=>v.pause()); });
-  slides.forEach((s,i)=>s.querySelectorAll('iframe[data-src]').forEach(f=>{ const a=flow()||i===cur; const on=f.src&&f.src!=='about:blank'; if(a&&!on) f.src=f.dataset.src; else if(!a&&on) f.src='about:blank'; }));
 }
 function go(i){
   i=Math.max(0,Math.min(N-1,i));
