@@ -33,10 +33,8 @@ button,a.b{border:0;font:inherit;font-weight:700;font-size:16px;padding:12px 18p
 <main class="card">
   <img src="../m/lockup-black.webp" alt="Scaling Socials">
   <h1>Portfolio <span>link maker</span></h1>
-  <p class="lead">Make a portfolio link for a client. The cover shows their brand name, and the last slide sends them to your WhatsApp, not the company number.</p>
+  <p class="lead">Make your own portfolio link once and send it to every client. The last slide sends them to your WhatsApp, not the company number.</p>
 
-  <label for="brand">Client brand <small>(optional, shows on the cover)</small></label>
-  <input id="brand" placeholder="e.g. House of Albeli" autocomplete="off">
   <label for="by">Your name</label>
   <input id="by" placeholder="e.g. Harsh Kumar" autocomplete="name">
   <label for="wa">Your WhatsApp number <small>(with country code)</small></label>
@@ -51,7 +49,7 @@ button,a.b{border:0;font:inherit;font-weight:700;font-size:16px;padding:12px 18p
       <a class="b s" id="open" href="#" target="_blank" rel="noopener">Preview</a>
     </div>
   </div>
-  <p class="hint">Your name and number are remembered on this device only, so next time you just change the brand.</p>
+  <p class="hint">Save this link, or bookmark this page. Your name and number are remembered on this device, so the link is ready next time.</p>
 </main>
 <script>
 const $=id=>document.getElementById(id);
@@ -59,18 +57,18 @@ const BASE=location.origin+location.pathname.replace(/link\/?(index\.html)?$/,''
 try{ $('by').value=localStorage.getItem('ss_by')||''; $('wa').value=localStorage.getItem('ss_wa')||''; }catch(e){}
 function slug(s){ return s.trim().toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,''); }
 function build(){
-  const by=$('by').value.trim(), wa=$('wa').value.replace(/\D/g,''), brand=slug($('brand').value);
+  const by=$('by').value.trim(), wa=$('wa').value.replace(/\D/g,'');
   let err=''; if(wa && wa.length<10) err='That number looks too short. Include the country code, e.g. 91.';
   if(wa.length===10) err='Add the country code in front, e.g. 91 for India.';
   $('err').textContent=err;
   const q=new URLSearchParams(); if(by) q.set('by',by); if(wa.length>=11) q.set('wa',wa);
-  const url=BASE+(q.toString()?'?'+q.toString():'')+(brand?'#for-'+brand:'');
+  const url=BASE+(q.toString()?'?'+q.toString():'');
   $('link').textContent=url; $('open').href=url;
-  const msg=`Hi${$('brand').value.trim()?' '+$('brand').value.trim()+' team':''}, here's our portfolio with results, creatives and how we work: ${url}`;
+  const msg=`Hi, here's the Scaling Socials portfolio with our results, creatives and how we work: ${url}`;
   $('share').href='https://wa.me/?text='+encodeURIComponent(msg);
   try{ localStorage.setItem('ss_by',by); localStorage.setItem('ss_wa',$('wa').value); }catch(e){}
 }
-['brand','by','wa'].forEach(i=>$(i).addEventListener('input',build)); build();
+['by','wa'].forEach(i=>$(i).addEventListener('input',build)); build();
 $('copy').onclick=async()=>{ const u=$('link').textContent; try{ await navigator.clipboard.writeText(u); }catch(e){ const r=document.createRange(); r.selectNodeContents($('link')); const s=getSelection(); s.removeAllRanges(); s.addRange(r); document.execCommand('copy'); } $('copy').textContent='Copied'; setTimeout(()=>$('copy').textContent='Copy link',1500); };
 </script>
 </body>
