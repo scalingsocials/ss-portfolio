@@ -926,7 +926,12 @@ addEventListener('resize',setMode);
   const s=h.match(/^#s(\d+)$/); if(s) cur=Math.min(N-1,Math.max(0,+s[1]-1));
   // shared by a sales rep: ?rep=code. Only approved reps below; numbers never come from the URL.
   const REPS={
-    // code: ['Full name','91XXXXXXXXXX'],
+    // code: ['Name','91XXXXXXXXXX'],
+    yaseen:['Yaseen','919740069312'],
+    prashant:['Prashant','918660072705'],
+    renny:['Renny','919740058321'],
+    venkatesh:['Venkatesh','919606713673'],
+    dhiksha:['Dhiksha','919740014132'],
   };
   const code=(new URLSearchParams(location.search).get('rep')||'').toLowerCase().trim(), r=Object.prototype.hasOwnProperty.call(REPS,code)?REPS[code]:null;
   if(r){
