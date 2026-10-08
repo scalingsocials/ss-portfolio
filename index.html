@@ -367,7 +367,10 @@ img{-webkit-user-drag:none;user-select:none}
   .slide .foot{left:20px;right:20px;bottom:18px;font-size:11px}
   .slide .wm{width:62%;right:6%}
   .progress,.nav .count,.hint{display:none}
-  .nav{left:50%;right:auto;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom,0px))}
+  .nav{left:auto;right:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));padding:0;border:0;background:#16161Ad9;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 6px 18px #1d1b3a33;transition:transform .3s ease,opacity .3s ease}
+  .nav.hide{transform:translateY(90px);opacity:0;pointer-events:none}
+  .nav [data-act="toc"]{width:46px;height:46px;min-width:0;padding:0;font-size:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M5 7h14M5 12h14M5 17h9'/%3E%3C/svg%3E") center/22px no-repeat}
+  .nav [data-act="toc"]:hover{background-color:transparent}
   .nav [data-act="prev"],.nav [data-act="next"]{display:none}
   .head{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:22px}
   .head h2{font-size:38px}.head p{font-size:16px}
@@ -676,7 +679,7 @@ img{-webkit-user-drag:none;user-select:none}
   <button type="button" data-act="prev" aria-label="Previous slide">←</button>
   <span class="count tnum" id="count">1 / 1</span>
   <button type="button" data-act="next" aria-label="Next slide">→</button>
-  <button type="button" data-act="toc">Contents</button>
+  <button type="button" data-act="toc" aria-label="Contents">Contents</button>
 </div>
 <div class="toc" id="toc" hidden role="dialog" aria-modal="true" aria-label="Contents">
   <div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h2 style="font-size:32px">Contents</h2><button type="button" data-act="closetoc" style="border:0;background:var(--lilac);border-radius:999px;padding:10px 16px;font-weight:700;cursor:pointer">Close</button></div><ol id="tocList"></ol></div>
@@ -815,6 +818,11 @@ tpl.remove();
     g.innerHTML=groups[+g.dataset.look].map(c=>`<button type="button" data-full="c/${c[0]}" aria-label="Enlarge creative" style="aspect-ratio:${c[1]}"><img src="c/${c[0]}" alt="Ad creative made by Scaling Socials" loading="lazy" decoding="async" width="${Math.round(570*c[1])}" height="570"></button>`).join(''); });
 })();
 
+// phones: hide the contents button while scrolling down, bring it back on scroll up
+(function(){ let last=0; const nav=document.querySelector('.nav');
+  document.addEventListener('scroll',e=>{ if(!flow()) return; const el=e.target===document?document.scrollingElement:e.target; if(!el||el.classList&&el.classList.contains('rail')) return;
+    const y=el.scrollTop; if(y>last+6&&y>200) nav.classList.add('hide'); else if(y<last-6) nav.classList.remove('hide'); last=y; },{capture:true,passive:true});
+})();
 // sliders
 document.querySelectorAll('.rail-wrap').forEach(w=>{
   const r=w.querySelector('.rail'), c=w.querySelector('.rc'), pv=w.querySelector('.prev'), nx=w.querySelector('.next');
