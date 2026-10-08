@@ -220,6 +220,14 @@ img{-webkit-user-drag:none;user-select:none}
 .shots figcaption{padding:8px 4px 0!important}
 .shots figcaption{font-size:14px;color:var(--mute);padding:10px 4px 2px}
 
+/* ---------- walkthrough ---------- */
+.walk{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:36px;align-items:start}
+.vframe{aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:var(--ink);box-shadow:0 20px 50px #1d1b3a2e}
+.vframe iframe{width:100%;height:100%;border:0;display:block}
+.wpts{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.wpts li{background:var(--lilac);border-radius:18px;padding:20px 22px;display:grid;gap:6px}
+.wpts li:nth-child(2){background:var(--mint)}.wpts li:nth-child(3){background:var(--butter)}
+.wpts b{font-size:22px;letter-spacing:-.01em}.wpts span{font-size:16px;line-height:1.45;color:#3c3c44}
 /* ---------- sliders (lookbook + proof) ---------- */
 .rail-wrap{display:flex;flex-direction:column;min-height:0;margin:0 -72px}
 .rail{display:flex;gap:20px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding:0 72px;padding:6px 72px 10px;scrollbar-width:none;position:relative;align-items:flex-start;-webkit-mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 0,#000 88%,transparent)}
@@ -379,6 +387,7 @@ img{-webkit-user-drag:none;user-select:none}
   .intl{grid-template-columns:1fr 1fr;gap:10px}.intl .h{grid-column:1/-1}.intl .c b{font-size:22px}
   .shots{grid-template-columns:1fr}
   .shots img{height:auto}
+  .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
   .proof figure{width:86vw;padding:8px}.proof figcaption{font-size:13px;flex-direction:column;gap:2px}.proof figcaption b{font-size:16px}
@@ -503,6 +512,20 @@ img{-webkit-user-drag:none;user-select:none}
   <div class="head"><h2>Straight from <span class="serif t-peri">Ads Manager</span></h2><p>Twelve live client accounts, read off Meta's own totals row. Campaign and account names hidden.</p></div>
   <div class="rail-wrap"><div class="rail proof"><figure><img src="m/ads-1.webp" alt="Meta Ads Manager view, client account 1" data-zoom loading="lazy" width="1600" height="594"><figcaption><b>13.21 avg ROAS</b><span>₹18.21 L purchase value</span><span style="margin-left:auto">Account 01</span></figcaption></figure><figure><img src="m/ads-2.webp" alt="Meta Ads Manager view, client account 2" data-zoom loading="lazy" width="1600" height="646"><figcaption><b>9.27 avg ROAS</b><span>₹2.53 Cr purchase value</span><span style="margin-left:auto">Account 02</span></figcaption></figure><figure><img src="m/ads-3.webp" alt="Meta Ads Manager view, client account 3" data-zoom loading="lazy" width="1600" height="537"><figcaption><b>10.94 avg ROAS</b><span>₹1.44 Cr purchase value</span><span style="margin-left:auto">Account 03</span></figcaption></figure><figure><img src="m/ads-4.webp" alt="Meta Ads Manager view, client account 4" data-zoom loading="lazy" width="1600" height="604"><figcaption><b>8.03 avg ROAS</b><span>₹2.84 Cr purchase value</span><span style="margin-left:auto">Account 04</span></figcaption></figure><figure><img src="m/ads-5.webp" alt="Meta Ads Manager view, client account 5" data-zoom loading="lazy" width="1600" height="608"><figcaption><b>16.41 avg ROAS</b><span>₹7.32 L purchase value</span><span style="margin-left:auto">Account 05</span></figcaption></figure><figure><img src="m/ads-6.webp" alt="Meta Ads Manager view, client account 6" data-zoom loading="lazy" width="1600" height="737"><figcaption><b>8.60 avg ROAS</b><span>₹14.04 L purchase value</span><span style="margin-left:auto">Account 06</span></figcaption></figure><figure><img src="m/ads-7.webp" alt="Meta Ads Manager view, client account 7" data-zoom loading="lazy" width="1600" height="665"><figcaption><b>9.01 avg ROAS</b><span>₹5.03 L purchase value</span><span style="margin-left:auto">Account 07</span></figcaption></figure><figure><img src="m/ads-8.webp" alt="Meta Ads Manager view, client account 8" data-zoom loading="lazy" width="1600" height="681"><figcaption><b>6.09 avg ROAS</b><span>₹21.40 L purchase value</span><span style="margin-left:auto">Account 08</span></figcaption></figure><figure><img src="m/ads-9.webp" alt="Meta Ads Manager view, client account 9" data-zoom loading="lazy" width="1600" height="690"><figcaption><b>6.52 avg ROAS</b><span>₹7.09 L purchase value</span><span style="margin-left:auto">Account 09</span></figcaption></figure><figure><img src="m/ads-10.webp" alt="Meta Ads Manager view, client account 10" data-zoom loading="lazy" width="1600" height="664"><figcaption><b>9.16 avg ROAS</b><span>₹11.78 L purchase value</span><span style="margin-left:auto">Account 10</span></figcaption></figure><figure><img src="m/ads-11.webp" alt="Meta Ads Manager view, client account 11" data-zoom loading="lazy" width="1600" height="667"><figcaption><b>5.28 avg ROAS</b><span>₹18.59 L purchase value</span><span style="margin-left:auto">Account 11</span></figcaption></figure><figure><img src="m/ads-12.webp" alt="Meta Ads Manager view, client account 12" data-zoom loading="lazy" width="1600" height="688"><figcaption><b>13.71 avg ROAS</b><span>₹4.84 L purchase value</span><span style="margin-left:auto">Account 12</span></figcaption></figure></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click to enlarge</span></div></div>
   <div class="foot"><span>Meta Ads Manager · client accounts</span><span class="pg"></span></div>
+</section>
+
+<!-- LOOM WALKTHROUGH -->
+<section class="slide" data-title="Inside a live ad account">
+  <div class="head"><h2>Inside a <span class="serif t-peri">live</span> ad account</h2><p>A screen recording from one of the accounts we run, straight from Meta Ads Manager. Press play, or open it full screen.</p></div>
+  <div class="walk">
+    <div class="vframe"><iframe data-src="https://drive.google.com/file/d/1uzZheGeIJNh6BpbQdwAo-qTk8YNnI0HY/preview" title="Walkthrough of a live client ad account" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe></div>
+    <ul class="wpts">
+      <li><b>Unedited</b><span>Recorded inside Ads Manager, not a mock-up or a slide.</span></li>
+      <li><b>Real spend</b><span>A live client account we manage day to day.</span></li>
+      <li><b>How we read it</b><span>The same numbers we walk clients through on the weekly call.</span></li>
+    </ul>
+  </div>
+  <div class="foot"><span>Ad account walkthrough</span><span class="pg"></span></div>
 </section>
 
 <!-- LOOKBOOK x3 -->
@@ -801,6 +824,7 @@ function media(){
     if(active){ if(!v.src) v.src=v.dataset.src; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); } else v.pause();
   }));
   slides.forEach((s,i)=>{ if(i!==cur && !flow()) s.querySelectorAll('video[controls]').forEach(v=>v.pause()); });
+  slides.forEach((s,i)=>s.querySelectorAll('iframe[data-src]').forEach(f=>{ const a=flow()||i===cur; const on=f.src&&f.src!=='about:blank'; if(a&&!on) f.src=f.dataset.src; else if(!a&&on) f.src='about:blank'; }));
 }
 function go(i){
   i=Math.max(0,Math.min(N-1,i));
