@@ -430,14 +430,14 @@ p{margin:0}
 </section>
 
 <!-- 05 RESULTS TABLE -->
-<section class="slide" data-title="Results at a glance">
-  <div class="head"><h2>Seven accounts, <span class="serif t-peri">in full</span></h2><p>Every figure comes from the client's own Meta Ads Manager. Brands stay anonymous; the niche, period and numbers are real.</p></div>
+<section class="slide" data-title="A few of many: results">
+  <div class="head"><h2>A few of <span class="serif t-peri">many</span></h2><p>Seven recent accounts out of 400+ brands we've worked with, picked because every month is documented. Figures are from each client's own Meta Ads Manager; brands stay anonymous.</p></div>
   <div class="tblwrap"><table class="tbl">
     <thead><tr><th>Niche</th><th>Situation</th><th>Period</th><th class="num">Ad spend</th><th class="num">Revenue</th><th class="num">ROAS</th></tr></thead>
     <tbody id="rtable"></tbody>
   </table></div>
   <div class="totals">
-    <div><b>7</b><span>documented accounts</span></div>
+    <div><b>7 of 400+</b><span>brands, shown here in full</span></div>
     <div><b>6.58x</b><span>blended ROAS across all seven</span></div>
     <div><b>11.82x</b><span>best account average (gifting)</span></div>
     <div><b>3 of 7</b><span>launched from zero</span></div>
@@ -703,7 +703,7 @@ FULL.map(k=>CASES[k]).forEach((c,i)=>{
 });
 // smaller case cards for the rest
 tpl.before(el(`<section class="slide" data-title="More case studies">
-  <div class="head"><h2>Four more <span class="serif t-peri">accounts</span></h2><p>Same rules, different starting points. Every figure from the client's own Meta Ads Manager.</p></div>
+  <div class="head"><h2>Four more <span class="serif t-peri">accounts</span></h2><p>Same rules, different starting points. A sample from our book of 400+ brands, every figure from the client's own Meta Ads Manager.</p></div>
   <div class="mini">${CASES.filter((c,k)=>!FULL.includes(k)).map(c=>`<div class="mc ${c.tone}">
     <div class="tag"><span class="pill">${c.arch}</span></div>
     <span class="mn">${c.niche} · ${c.period}</span>
