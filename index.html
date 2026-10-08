@@ -403,7 +403,7 @@ img{-webkit-user-drag:none;user-select:none}
   .shots{grid-template-columns:1fr}
   .shots img{height:auto}
   .pack{grid-template-columns:1fr;grid-template-rows:none;margin-bottom:30px}.pack .pk1{grid-row:auto}.pack .pk4{grid-column:auto}.pack figure{padding:12px 12px 56px}.pack figcaption{flex-direction:column;gap:2px;left:14px;bottom:10px}.pack figcaption b{font-size:16px}.pack figcaption span{font-size:13px}
-  .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
+  .walk{grid-template-columns:1fr;gap:14px}.vframe{aspect-ratio:4/3}.vguard{width:60px;height:60px}.vguard img{width:28px}.vfs{display:none}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
   .proof figure{width:86vw;padding:8px}.proof figcaption{font-size:13px;flex-direction:column;gap:2px}.proof figcaption b{font-size:16px}
@@ -816,6 +816,8 @@ tpl.remove();
 })();
 
 // walkthrough: own full-screen (keeps the guard over Drive's pop-out)
+// phones/tablets: Drive's player needs native full screen to show the video on iOS, so allow it there
+if(matchMedia('(pointer:coarse)').matches) document.querySelectorAll('.vframe iframe').forEach(f=>{ f.setAttribute('allow','autoplay; fullscreen'); f.setAttribute('allowfullscreen',''); f.setAttribute('webkitallowfullscreen',''); if(f.src&&f.src!=='about:blank'){ const s=f.src; f.src='about:blank'; f.src=s; } });
 document.querySelectorAll('.vfs').forEach(b=>{ const f=b.closest('.vframe'); if(!f.requestFullscreen){ b.remove(); return; } b.onclick=()=>f.requestFullscreen().catch(()=>{}); });
 // sliders
 document.querySelectorAll('.rail-wrap').forEach(w=>{
