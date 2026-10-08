@@ -1,3 +1,9 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Scaling Socials portfolio: ecommerce growth for D2C brands, run on your P&amp;L.">
 <title>Scaling Socials Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +35,8 @@ h1,h2,h3{margin:0;font-weight:700;letter-spacing:-.025em;line-height:.98;text-wr
 p{margin:0}
 
 /* ---------- stage ---------- */
-.viewport{position:fixed;inset:0;display:grid;place-items:center;overflow:hidden}
-.stage{width:1600px;height:900px;position:relative;transform-origin:center center;flex:none}
+.viewport{position:fixed;inset:0;overflow:hidden}
+.stage{width:1600px;height:900px;position:absolute;left:50%;top:50%;transform-origin:center center;transform:translate(-50%,-50%)}
 .slide{position:absolute;inset:0;background:var(--paper);border-radius:22px;overflow:hidden;padding:64px 72px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transform:translateX(40px) scale(.985);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1),visibility 0s .55s;box-shadow:0 30px 80px #1d1b3a1f}
 .slide.on{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .55s cubic-bezier(.2,.8,.2,1),visibility 0s}
 .slide.prev{transform:translateX(-40px) scale(.985)}
@@ -278,7 +284,7 @@ p{margin:0}
 @media (max-width:900px), (max-height:520px) and (max-width:1000px){
   body{overflow:auto;background:var(--surface)}
   .viewport{position:static;display:block;overflow:visible;padding:12px 12px 90px}
-  .stage{width:auto;height:auto;transform:none!important}
+  .stage{position:static;width:auto;height:auto;transform:none!important}
   .slide{position:relative;inset:auto;opacity:1;visibility:visible;transform:none;margin-bottom:14px;padding:30px 20px 56px;border-radius:18px;box-shadow:none}
   .slide .foot{left:20px;right:20px;bottom:18px;font-size:11px}
   .progress,.nav .count,.hint{display:none}
@@ -334,6 +340,9 @@ p{margin:0}
 @media (max-width:420px){.svc,.team{grid-template-columns:1fr}.wins{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
+</head>
+<body>
+
 
 <div class="progress" aria-hidden="true"><i id="prog"></i></div>
 <div class="viewport" id="vp"><div class="stage" id="stage">
@@ -706,7 +715,7 @@ slides.forEach((s,i)=>{ const pg=s.querySelector('.pg'); if(pg) pg.textContent=S
 $('#tocList').innerHTML=slides.map((s,i)=>`<li><button type="button" data-go="${i}"><span>${String(i+1).padStart(2,'0')}</span>${s.dataset.title}</button></li>`).join('');
 const flow=()=>matchMedia('(max-width:900px), (max-height:520px) and (max-width:1000px)').matches;
 let cur=0;
-function fit(){ const st=$('#stage'); if(flow()){ st.style.transform=''; return; } const s=Math.min(innerWidth/1640, innerHeight/940); st.style.transform=`scale(${s})`; }
+function fit(){ const st=$('#stage'); if(flow()){ st.style.transform=''; return; } const s=Math.min(innerWidth/1640, innerHeight/940); st.style.transform=`translate(-50%,-50%) scale(${s})`; }
 function media(){
   slides.forEach((s,i)=>s.querySelectorAll('video[data-src]').forEach(v=>{
     const active = flow() ? true : i===cur;
@@ -752,3 +761,6 @@ addEventListener('resize',setMode);
 })();
 setMode();
 </script>
+
+</body>
+</html>
