@@ -97,6 +97,13 @@ p{margin:0}
 
 /* ---------- 03 problem ---------- */
 .s-prob{background:var(--blush)}
+.pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 22px;flex:1;align-content:start}
+.pcol{grid-column:1/-1;display:none}
+.pp{display:grid;grid-template-columns:minmax(0,1.05fr) 26px minmax(0,1fr);align-items:center;gap:10px;background:#ffffff99;border-radius:18px;padding:16px 18px 16px 14px;min-height:128px}
+.said{position:relative;background:var(--paper);border-radius:16px 16px 16px 4px;padding:16px 18px;font-family:var(--f-serif);font-style:italic;font-size:23px;line-height:1.25;box-shadow:0 2px 0 #e7c3cb}
+.said::before{content:"“";color:var(--peri);font-size:30px;line-height:0;vertical-align:-10px;margin-right:2px}
+.arr{font-size:22px;color:var(--peri);text-align:center;font-weight:700}
+.fix{font-size:18.5px;line-height:1.38;color:#2c2c33}
 .quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;flex:1}
 .quotes blockquote{margin:0;background:var(--paper);border-radius:18px;padding:34px 36px;font-family:var(--f-serif);font-style:italic;font-size:34px;line-height:1.2;position:relative;display:flex;align-items:flex-end}
 .quotes blockquote::before{content:"“";position:absolute;top:8px;left:24px;font-size:96px;color:var(--peri);line-height:1}
@@ -306,6 +313,7 @@ p{margin:0}
   .mosaic .stat b{font-size:30px}.mosaic .stat span{font-size:12px}
   .nums{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
   .nums .n{padding:18px;min-height:150px}.nums .n b{font-size:46px}.nums .n p{font-size:15px}
+  .pains{grid-template-columns:minmax(0,1fr)}.pp{grid-template-columns:minmax(0,1fr)}.arr{display:none}.said{font-size:18px}.fix{font-size:15px;padding:0 4px 4px}
   .quotes{grid-template-columns:1fr;gap:12px}
   .quotes blockquote{font-size:22px;padding:42px 20px 20px}
   .princ{grid-template-columns:1fr;gap:10px}.princ div{min-height:0;padding:20px}.princ h3{font-size:24px}.princ p{font-size:16px}
@@ -380,12 +388,10 @@ p{margin:0}
 
 <!-- 03 PROBLEM -->
 <section class="slide s-prob" data-title="Sound familiar?">
-  <div class="head"><h2>Sound <span class="serif">familiar?</span></h2><p>Most D2C brands aren't losing on product. They're losing on ads. These are the four things founders tell us on the first call.</p></div>
-  <div class="quotes">
-    <blockquote>ROAS was 4x last year. It's under 2x now and nobody can tell me why.</blockquote>
-    <blockquote>My agency sends a PDF full of impressions. I want to know if I made money.</blockquote>
-    <blockquote>Every time we push spend, profit disappears.</blockquote>
-    <blockquote>Creatives die in a week and there's no one to make the next batch.</blockquote>
+  <div class="head"><h2>Sound <span class="serif">familiar?</span></h2><p>Most D2C brands aren't losing on product. They're losing on ads. These are the eight things founders tell us most on the first call.</p></div>
+  <div class="pains">
+    <div class="pcol"><span class="lbl">What founders tell us</span><span class="lbl">What we do about it</span></div>
+    <div class="pp"><p class="said">ROAS was 4x last year. It's under 2x now and nobody can tell me why.</p><span class="arr" aria-hidden="true">→</span><p class="fix">A written audit in 3 working days that finds the leak: structure, creative fatigue or tracking.</p></div><div class="pp"><p class="said">My agency sends a PDF full of impressions. I want to know if I made money.</p><span class="arr" aria-hidden="true">→</span><p class="fix">One weekly number tied to your P&amp;L, with your break-even ROAS and the maths shown.</p></div><div class="pp"><p class="said">Every time we push spend, profit disappears.</p><span class="arr" aria-hidden="true">→</span><p class="fix">Budget only goes to campaigns clearing your break-even, and moves daily against it.</p></div><div class="pp"><p class="said">Creatives die in a week and there's no one to make the next batch.</p><span class="arr" aria-hidden="true">→</span><p class="fix">In-house designers and editors ship new hooks and angles into testing every week.</p></div><div class="pp"><p class="said">We're getting traffic, but nobody's buying.</p><span class="arr" aria-hidden="true">→</span><p class="fix">Product page, cart and checkout fixes before we ask you for a rupee more spend.</p></div><div class="pp"><p class="said">Meta says one number, Shopify says another.</p><span class="arr" aria-hidden="true">→</span><p class="fix">Pixel and Conversions API set up properly, so the numbers you see are numbers you can trust.</p></div><div class="pp"><p class="said">RTO and returns are eating our margin.</p><span class="arr" aria-hidden="true">→</span><p class="fix">Targets set after shipping, returns and gateway fees, not on top-line revenue.</p></div><div class="pp"><p class="said">Every new agency rebuilds everything and we start from zero.</p><span class="arr" aria-hidden="true">→</span><p class="fix">You own every account. Winners keep running; one campaign of ours has run 8 months unbroken.</p></div>
   </div>
   <p class="pivot">Whichever one it is, the next ten slides show what we did about it for accounts like yours.</p>
   <div class="foot"><span>Scaling Socials</span><span>03</span></div>
