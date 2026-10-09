@@ -367,9 +367,12 @@ img{-webkit-user-drag:none;user-select:none}
 .who i{width:52px;height:52px;border-radius:50%;background:var(--peri-lift);color:#0b0b14;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:22px;flex:none}
 .who b{font-size:24px}.who span{display:block;font-size:15px;color:#9A9AA4;margin-top:2px}
 .btn.wa{background:#25D366;color:#0b2914}
-.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:auto;padding-top:22px;border-top:1px solid #2c2c36}
+.contact{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:auto;padding-top:22px;border-top:1px solid #2c2c36}
 .contact small{display:block;font-size:13px;color:#9A9AA4;letter-spacing:.05em;text-transform:uppercase}
-.contact span{font-size:18px;font-weight:600;user-select:all}
+.contact span,.contact a{font-size:18px;font-weight:600;color:#ECECEE;text-decoration:none}
+.contact a:hover{color:var(--peri-lift);text-decoration:underline}
+.who i img{width:30px;height:auto}
+.cta .l p.backup{margin:14px 0 0;font-size:15px;line-height:1.4;color:#9A9AA4;max-width:none}.backup a{color:#ECECEE}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:40;background:#16161ae6;display:grid;place-items:center;padding:28px}
@@ -444,7 +447,7 @@ img{-webkit-user-drag:none;user-select:none}
   .svc{grid-template-columns:1fr 1fr;gap:10px}.svc div{min-height:0;padding:16px}.svc h3{font-size:19px}.svc ul{font-size:14px}
   .fit{grid-template-columns:1fr}
   .cta{grid-template-columns:1fr;gap:26px}.cta h2{font-size:52px}.cta .l p{font-size:17px}
-  .contact{grid-template-columns:1fr;margin-top:24px}
+  .contact{grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}.contact span,.contact a{font-size:15px}
   .rep{padding:18px}.rep b{font-size:21px}.rep-default span{font-size:15px}
   .btn{font-size:16px;padding:13px 20px}
 }
@@ -677,14 +680,14 @@ img{-webkit-user-drag:none;user-select:none}
   <div class="cta">
     <div class="l">
       <img src="m/lockup-white.webp" alt="Scaling Socials" width="900" height="265" style="width:220px;height:auto">
-      <h2 style="margin-top:56px">Let's find your <span class="serif">next</span> crore.</h2>
+      <h2 style="margin-top:36px">Let's find your <span class="serif">next</span> crore.</h2>
       <p>Liked what you saw? Let's talk about your brand: where it's stuck, what's working and what growth could look like from here.</p>
       <div class="rep" id="repCard">
         <small>Talk to us</small>
-        <div class="rep-default" id="repDefault"><b>Reply to the person who shared this deck.</b><span>The message this link came in is your direct line to us.</span></div>
-        <div class="rep-named" id="repNamed" hidden>
-          <div class="who"><i id="repInit"></i><div><b id="repName"></b><span>Scaling Socials</span></div></div>
-          <div class="btns"><a class="btn wa" id="repWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Chat on WhatsApp</a><a class="btn ghost" id="repCall" href="#">Call</a></div>
+        <div class="rep-named" id="repNamed">
+          <div class="who"><i id="repInit"><img src="m/mark.webp" alt=""></i><div><b id="repName">Scaling Socials office</b><span id="repSub">+91 96067 13608</span></div></div>
+          <div class="btns"><a class="btn wa" id="repWa" href="https://wa.me/919606713608?text=Hi%2C%20I%20went%20through%20the%20Scaling%20Socials%20portfolio%20and%20would%20like%20to%20book%20a%20call." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.2-.2-.5-.3Z"/></svg>Chat on WhatsApp</a><a class="btn ghost" id="repCall" href="tel:+919606713608">Call</a></div>
+          <p class="backup" id="repBackup" hidden>Can't reach <span id="repFirst"></span>? Our office is on <a href="https://wa.me/919606713608" target="_blank" rel="noopener">WhatsApp</a> or <a href="tel:+919606713608">+91 96067 13608</a>.</p>
         </div>
       </div>
     </div>
@@ -695,8 +698,9 @@ img{-webkit-user-drag:none;user-select:none}
     </div>
   </div>
   <div class="contact">
-    <div><small>Website</small><span>scalingsocials.com</span></div>
-    <div><small>Instagram</small><span>@scalingsocialsofficial</span></div>
+    <div><small>Website</small><a href="https://scalingsocials.com" target="_blank" rel="noopener">scalingsocials.com &#8599;</a></div>
+    <div><small>Instagram</small><a href="https://www.instagram.com/scalingsocialsofficial/" target="_blank" rel="noopener">@scalingsocialsofficial &#8599;</a></div>
+    <div><small>Office</small><a href="tel:+919606713608">+91 96067 13608</a></div>
     <div><small>Studio</small><span>HRBR Layout, Bengaluru</span></div>
   </div>
   <div class="foot"><span>Scaling Socials Media LLP</span><span class="pg"></span></div>
@@ -944,9 +948,8 @@ addEventListener('resize',setMode);
   if(r){
     const by=r[0], wa=r[1], brand=m?$('#prepName').textContent:'';
     const msg=`Hi ${by.split(' ')[0]}, I went through the Scaling Socials portfolio and would like to book a call${brand?' for '+brand:''}.`;
-    $('#repName').textContent=by; $('#repInit').textContent=by.charAt(0).toUpperCase();
+    $('#repName').textContent=by; $('#repInit').textContent=by.charAt(0).toUpperCase(); $('#repSub').textContent='Scaling Socials'; $('#repFirst').textContent=by.split(' ')[0]; $('#repBackup').hidden=false;
     $('#repWa').href='https://wa.me/'+wa+'?text='+encodeURIComponent(msg); $('#repCall').href='tel:+'+wa;
-    $('#repDefault').hidden=true; $('#repNamed').hidden=false;
   }
 })();
 setMode();
