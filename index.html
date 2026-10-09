@@ -326,11 +326,12 @@ img{-webkit-user-drag:none;user-select:none}
 .crew img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in}
 .crew figcaption{position:absolute;left:20px;bottom:20px;background:#16161Ad9;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:16px;padding:12px 18px;display:flex;align-items:baseline;gap:10px}
 .crew figcaption b{font-size:34px;letter-spacing:-.03em;color:var(--peri-lift)}.crew figcaption span{font-size:16px;color:#ECECEE}
-.life{display:grid;grid-template-columns:1.3fr repeat(4,minmax(0,1fr));gap:12px;margin-top:16px;height:150px}
+.life{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.6fr 1fr;gap:12px;margin-top:16px;height:150px}
 .life .t{background:var(--lilac);border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:center}
 .life .t b{font-size:52px;letter-spacing:-.04em;color:var(--peri-deep);line-height:.9}
 .life .t span{font-size:15px;margin-top:6px}
 .life img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.life .grp{cursor:zoom-in}
 
 /* ---------- services ---------- */
 .svc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:18px;flex:1;margin-bottom:44px}
@@ -449,7 +450,7 @@ img{-webkit-user-drag:none;user-select:none}
   .voices{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
   .wq{grid-column:1/-1;padding:8px 0 0}.wq blockquote{font-size:16px}
   .team{grid-template-columns:1fr 1fr;gap:10px}.fd p{display:none}.fd h3{font-size:18px}
-  .life{grid-template-columns:1fr 1fr;height:auto}.life img{aspect-ratio:4/3}.life .t b{font-size:36px}
+  .life{grid-template-columns:1fr 1fr;height:auto}.life img{aspect-ratio:4/3}.life .grp{grid-column:1/-1;aspect-ratio:1280/647;order:-1}.life .t b{font-size:36px}
   .svc{grid-template-columns:1fr 1fr;gap:10px}.svc div{min-height:0;padding:16px}.svc h3{font-size:19px}.svc ul{font-size:14px}
   .fit{grid-template-columns:1fr}
   .cta{grid-template-columns:1fr;gap:26px}.cta h2{font-size:52px}.cta .l p{font-size:17px}
@@ -659,17 +660,10 @@ img{-webkit-user-drag:none;user-select:none}
     <div class="t"><b>20+</b><span>people in Bengaluru</span></div>
     <img src="m/life-6.webp" alt="The Scaling Socials team outdoors" width="900" height="675">
     <img src="m/life-1.webp" alt="Team photo" width="900" height="675">
-    <img src="m/life-5.webp" alt="Team celebration" width="900" height="675">
+    <img class="grp" src="m/team-group.webp" alt="The Scaling Socials team" data-zoom width="1280" height="647">
     <img src="m/life-8.webp" alt="Team at the office" width="900" height="675">
   </div>
   <div class="foot"><span>Scaling Socials</span><span class="pg"></span></div>
-</section>
-
-<!-- TEAM PHOTO -->
-<section class="slide s-crew" data-title="The whole team">
-  <div class="head"><h2>The team behind <span class="serif">the work</span></h2><p>Media buyers, designers, editors, developers and account managers, all in-house in Bengaluru.</p></div>
-  <figure class="crew"><img src="m/team-group.webp" alt="The Scaling Socials team in Bengaluru" data-zoom loading="lazy" width="1280" height="647"><figcaption><b>20+</b><span>people, one office in Bengaluru</span></figcaption></figure>
-  <div class="foot"><span>Scaling Socials · Bengaluru</span><span class="pg"></span></div>
 </section>
 
 <!-- SERVICES -->
