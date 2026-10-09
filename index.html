@@ -294,9 +294,16 @@ img{-webkit-user-drag:none;user-select:none}
 .wbox .mob{position:absolute;right:0;bottom:0;width:22%;border-radius:14px;border:4px solid var(--ink);overflow:hidden;box-shadow:0 12px 26px #1d1b3a40;background:#000}
 .wbox .mob img{width:100%;height:auto;aspect-ratio:9/17;object-fit:cover;object-position:top}
 .wcap{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.wcap b{font-size:18px;letter-spacing:-.01em}
-.wcap span{font-size:13px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--peri-deep)}
-.w2 .wt{padding:16px 22px 12px;gap:8px}.w2 .wbox{padding-right:13%;width:74%;align-self:center}.w2 .wbox .mob{width:19%}.w2 .browser img{aspect-ratio:16/9}.w2 .wcap b{font-size:20px}
+.wcap b{font-size:18px;letter-spacing:-.01em;display:block}
+.wcap small{display:block;font-size:13px;color:var(--mute);margin-top:2px}
+a.wt{color:inherit;text-decoration:none;transition:transform .25s,box-shadow .25s}
+a.wt:hover{transform:translateY(-4px);box-shadow:0 14px 30px #1d1b3a1f}
+a.wt:hover .wcap span{text-decoration:underline}
+.shops .wt{width:640px}
+.w2 .wt{padding:14px 18px 12px;gap:8px}
+
+.wcap span{font-size:14px;font-weight:700;color:var(--peri-deep);white-space:nowrap}
+.w2 .wt{padding:16px 22px 12px;gap:8px}.w2 .wbox{padding-right:13%;width:64%;align-self:center}.w2 .wbox .mob{width:19%}.w2 .browser img{aspect-ratio:16/9}.w2 .wcap b{font-size:20px}
 .webfacts{display:flex;gap:12px;margin-top:auto;padding-top:16px;margin-bottom:26px;flex-wrap:wrap}
 .webfacts span{background:var(--mint);border-radius:999px;padding:9px 16px;font-weight:600;font-size:15px}
 
@@ -440,6 +447,7 @@ img{-webkit-user-drag:none;user-select:none}
   .tocg{grid-template-columns:1fr;gap:10px}.tocg section{padding:12px 6px 6px}
   .toc li button{font-size:15px;padding:9px 10px}
   .crew{height:auto;width:100%;aspect-ratio:auto;margin-bottom:34px}.crew{overflow:visible;box-shadow:none}.crew img{border-radius:16px}.crew figcaption{position:static;margin-top:10px;padding:8px 12px;display:inline-flex}.crew figcaption b{font-size:22px}.crew figcaption span{font-size:13px}
+  .shops .wt{width:78vw}
   .walk{grid-template-columns:1fr;gap:14px}.wpts li{padding:14px 16px}.wpts b{font-size:17px}.wpts span{font-size:14px}
   .rail-wrap{margin:0 -20px}.rail{padding:4px 20px 8px;scroll-padding:0 20px;gap:12px}.rail-ctl{padding:10px 20px 0}.rail-ctl .rh{display:none}
   .look button{height:300px}
@@ -608,13 +616,13 @@ img{-webkit-user-drag:none;user-select:none}
 
 <!-- WEB -->
 <section class="slide" data-title="Shopify stores">
-  <div class="head"><h2>Shopify stores built to <span class="serif t-peri">sell</span></h2><p>Designed, built and tracked by one in-house team, for the paid traffic we send them.</p></div>
-  <div class="wgrid w3" id="shopSites"></div>
+  <div class="head"><h2>Shopify stores built to <span class="serif t-peri">sell</span></h2><p>Twelve live stores, designed, built and tracked by one in-house team. Click any store to visit it.</p></div>
+  <div class="rail-wrap"><div class="rail shops" id="shopSites"></div><div class="rail-ctl"><button type="button" class="rb prev" aria-label="Previous">&larr;</button><span class="rc"></span><button type="button" class="rb next" aria-label="Next">&rarr;</button><span class="rh">Scroll or use the arrows · click any store to visit it</span></div></div>
   <div class="webfacts"><span>Custom Shopify themes</span><span>Sub-1.5s load-time target</span><span>Pixel and CAPI from day one</span><span>Mobile-first</span></div>
   <div class="foot"><span>Shopify development</span><span class="pg"></span></div>
 </section>
 <section class="slide" data-title="Custom websites">
-  <div class="head"><h2>Custom websites, <span class="serif t-peri">any industry</span></h2><p>Fast static sites and lead-gen pages for brands outside ecommerce.</p></div>
+  <div class="head"><h2>Custom websites, <span class="serif t-peri">any industry</span></h2><p>Fast static sites and lead-gen pages for brands outside ecommerce. Click any site to visit it.</p></div>
   <div class="wgrid w2" id="webSites"></div>
   <div class="foot"><span>Web development</span><span class="pg"></span></div>
 </section>
@@ -775,8 +783,8 @@ const TABLE = [
  ['Indo-western occasion wear','Launched from zero','Apr – Jul 26','₹97,402','₹6.16 L','6.33x','#DCDDFB'],
  ['Kidswear','Kept a winner winning','May – Jul 26','₹2.94 L','₹15.85 L','5.39x','#D6EAE6']
 ];
-const SHOP=[['chinmaya','Spiritual books and gifts'],['joliindia','Fashion accessories'],['koshkulture',"Women's fashion"],['younglings','Kidswear'],['sanyamalik','Fine jewellery'],['eazywagon','Home décor']];
-const WEB=[['web-conexus','CSR consultancy','Custom website'],['web-ev','Artisan homeware brand','Custom website'],['web-paragon','Metal crafts exporter','Custom website'],['web-ruby','Real estate launch','Lead-gen site']];
+const SHOP=[['stilig',"Women's occasion wear",'https://stilig.in/'],['zaurum','Jewellery','https://zaurum.in/'],['koshkulture',"Women's fashion",'https://koshkulture.com/'],['namak','Artisan home décor','https://namakindia.com/'],['talesbythreads',"Girls' kidswear",'https://talesbythreads.com/'],['mamkam','Designer womenswear','https://mamkam.in/'],['frenchtheory',"Women's western wear",'https://www.frenchtheory.in/'],['sanyamalik','Fine jewellery','https://sanyamalik.com/'],['joliindia','Fashion accessories','https://joliindia.com/'],['eazywagon','Home décor and gifting','https://eazywagon.com/'],['younglings','Kidswear','https://younglings.in/'],['chinmaya','Spiritual books and gifts','https://eshop.chinmayamission.com/']];
+const WEB=[['web-conexus','CSR consultancy','Custom website','https://conexusservices.com/'],['web-ev','Artisan homeware brand','Custom website','https://evhome.in/'],['web-paragon','Metal crafts exporter','Custom website','https://www.paragonmetal.com/'],['web-ruby','Real estate launch','Lead-gen site','https://ruby.worldsquare.in/']];
 
 /* ---------- build dynamic slides ---------- */
 const $ = s => document.querySelector(s);
@@ -879,9 +887,10 @@ document.querySelectorAll('.rail-wrap').forEach(w=>{
 // reels
 $('#reels').innerHTML=[1,2,3,4,5,6].map(n=>`<div class="phone"><video data-src="v/reel-${n}.mp4" poster="v/reel-${n}.webp" muted loop playsinline preload="none" aria-label="Client reel ${n}"></video></div>`).join('');
 // sites
-const wtile=(d,m,label,kind)=>`<div class="wt"><div class="wbox"><div class="browser"><div class="dots"><i></i><i></i><i></i></div><img src="m/${d}" alt="${label}: desktop homepage we built" loading="lazy" width="1100" height="688"></div><div class="mob"><img src="m/${m}" alt="${label}: mobile view" loading="lazy" width="390" height="844"></div></div><div class="wcap"><b>${label}</b><span>${kind}</span></div></div>`;
-$('#shopSites').innerHTML=SHOP.map(s=>wtile(`site-${s[0]}-d.webp`,`site-${s[0]}-m.webp`,s[1],'Shopify')).join('');
-$('#webSites').innerHTML=WEB.map(s=>wtile(`${s[0]}-d.webp`,`${s[0]}-m.webp`,s[1],s[2])).join('');
+const host=u=>u.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'');
+const wtile=(d,m,label,kind,url)=>`<a class="wt" href="${url}" target="_blank" rel="noopener" aria-label="${label}: open the live site in a new tab"><div class="wbox"><div class="browser"><div class="dots"><i></i><i></i><i></i></div><img src="m/${d}" alt="${label}: desktop homepage we built" loading="lazy" width="1100" height="688"></div><div class="mob"><img src="m/${m}" alt="${label}: mobile view" loading="lazy" width="390" height="844"></div></div><div class="wcap"><div><b>${label}</b><small>${kind}</small></div><span>${host(url)} &#8599;</span></div></a>`;
+$('#shopSites').innerHTML=SHOP.map(s=>wtile(`site-${s[0]}-d.webp`,`site-${s[0]}-m.webp`,s[1],'Shopify store',s[2])).join('');
+$('#webSites').innerHTML=WEB.map(s=>wtile(`${s[0]}-d.webp`,`${s[0]}-m.webp`,s[1],s[2],s[3])).join('');
 
 /* ---------- deck engine ---------- */
 const slides=[...document.querySelectorAll('.slide')];
